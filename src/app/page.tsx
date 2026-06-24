@@ -1,66 +1,38 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import { Hero } from '@/components/sections/Hero';
+import { TrustBar } from '@/components/sections/TrustBar';
+import { WhoWeHelpSection } from '@/components/sections/WhoWeHelpSection';
+import { WhyArkanSection } from '@/components/sections/WhyArkanSection';
+import { SectorGrid } from '@/components/sections/SectorGrid';
+import { FirstConversationSection } from '@/components/sections/FirstConversationSection';
+import { LeadForm } from '@/components/sections/LeadForm';
+import { CTASection } from '@/components/sections/CTASection';
+import type { Metadata } from 'next';
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: 'Libya Market Entry Partner | Book a Market Entry Call | Arkan Holding Group',
+  description:
+    'Enter Libya with a trusted local operating partner. Arkan helps foreign and regional companies assess, enter, and operate in Libya across six sectors.',
+};
+
+export default function HomePage() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <>
+      <Hero />
+      <TrustBar />
+      <WhoWeHelpSection />
+      <WhyArkanSection />
+      <SectorGrid />
+      <FirstConversationSection />
+      <section
+        id="contact"
+        style={{
+          backgroundColor: '#FFFFFF',
+          padding: '120px 0',
+        }}
+      >
+        <LeadForm />
+      </section>
+      <CTASection />
+    </>
   );
 }
