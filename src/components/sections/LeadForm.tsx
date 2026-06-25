@@ -1,20 +1,16 @@
 'use client';
 
-import { useState, FormEvent, useEffect, Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useState, FormEvent, Suspense } from 'react';
 import { trackFormSubmit, getStoredUTM } from '@/lib/analytics';
 import { Button } from '@/components/ui/Button';
 import { useLang } from '@/lib/LangContext';
 
-export const LeadFormInner = () => {
-  const searchParams = useSearchParams();
+export const LeadFormInner = ({ embedded = false }: { embedded?: boolean }) => {
   const { t } = useLang();
   const [submitted, setSubmitted] = useState(false);
-  const [utmParams, setUtmParams] = useState<Record<string, string>>({});
-
-  useEffect(() => {
-    setUtmParams(getStoredUTM());
-  }, [searchParams]);
+  const [utmParams] = useState<Record<string, string>>(() =>
+    typeof window !== 'undefined' ? getStoredUTM() : {}
+  );
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -47,13 +43,29 @@ export const LeadFormInner = () => {
   const tl = t.leadForm.timelineOptions;
 
   return (
-    <div style={{ background: '#FFFFFF', padding: 'clamp(3rem, 6vw, 4.5rem)', borderRadius: '24px', maxWidth: '850px', margin: '0 auto', border: '1px solid rgba(0, 0, 0, 0.05)', boxShadow: '0 24px 48px rgba(0,0,0,0.05)' }}>
-      <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', marginBottom: '1rem', textAlign: 'center', fontWeight: 700, color: 'var(--color-navy)' }}>
-        {t.leadForm.title}
-      </h2>
-      <p style={{ textAlign: 'center', color: 'var(--color-text-muted)', fontSize: '1.0625rem', lineHeight: 1.6, maxWidth: '560px', margin: '0 auto 3rem' }}>
-        {t.leadForm.intro}
-      </p>
+    <div
+      className={embedded ? 'lead-form lead-form--compact' : 'lead-form'}
+      style={{
+        background: '#FFFFFF',
+        padding: embedded ? 'clamp(1.5rem, 3vw, 2.25rem)' : 'clamp(3rem, 6vw, 4.5rem)',
+        borderRadius: embedded ? '16px' : '24px',
+        maxWidth: embedded ? '100%' : '850px',
+        margin: embedded ? 0 : '0 auto',
+        width: '100%',
+        border: '1px solid rgba(0, 0, 0, 0.05)',
+        boxShadow: embedded ? '0 24px 60px rgba(11,27,50,0.28)' : '0 24px 48px rgba(0,0,0,0.05)',
+      }}
+    >
+      {!embedded && (
+        <>
+          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', marginBottom: '1rem', textAlign: 'center', fontWeight: 700, color: 'var(--color-navy)' }}>
+            {t.leadForm.title}
+          </h2>
+          <p style={{ textAlign: 'center', color: 'var(--color-text-muted)', fontSize: '1.0625rem', lineHeight: 1.6, maxWidth: '560px', margin: '0 auto 3rem' }}>
+            {t.leadForm.intro}
+          </p>
+        </>
+      )}
 
       <style dangerouslySetInnerHTML={{__html: `
         .form-grid { display: grid; grid-template-columns: 1fr; gap: 2rem 1.5rem; }
@@ -72,6 +84,14 @@ export const LeadFormInner = () => {
           font-size: 1rem;
           transition: all 0.3s ease;
         }
+        /* Compact (embedded on homepage) */
+        .lead-form--compact .form-grid { gap: 1rem 1.1rem; }
+        .lead-form--compact .form-group { gap: 0.35rem; }
+        .lead-form--compact .form-label { font-size: 0.78rem; }
+        .lead-form--compact .form-input { padding: 0.6rem 0.85rem; border-radius: 8px; font-size: 0.9rem; }
+        .lead-form--compact .form-input::placeholder { font-size: 0.9rem; }
+        .lead-form--compact textarea.form-input { min-height: 64px; }
+        .lead-form--compact .mt-6 { margin-top: 0.75rem !important; }
         .form-input:focus {
           outline: none;
           border-color: var(--color-gold);
@@ -137,7 +157,7 @@ export const LeadFormInner = () => {
           <input type="tel" id="phone" name="phone" className="form-input" placeholder={p.phone} />
         </div>
 
-        <div className="form-group full-width">
+        <div className="form-group">
           <label className="form-label" htmlFor="timeline">{f.timeline}</label>
           <select id="timeline" name="timeline" className="form-input" defaultValue="Exploring options">
             <option value="Exploring options">{tl.exploring}</option>
@@ -148,14 +168,14 @@ export const LeadFormInner = () => {
           </select>
         </div>
 
-        <div className="form-group full-width">
-          <label className="form-label" htmlFor="support">{f.support}</label>
-          <textarea id="support" name="support" rows={4} className="form-input" placeholder={p.support}></textarea>
+        <div className="form-group">
+          <label className="form-label" htmlFor="callTime">{f.callTime}</label>
+          <input type="text" id="callTime" name="callTime" className="form-input" placeholder={p.callTime} />
         </div>
 
         <div className="form-group full-width">
-          <label className="form-label" htmlFor="callTime">{f.callTime}</label>
-          <input type="text" id="callTime" name="callTime" className="form-input" placeholder={p.callTime} />
+          <label className="form-label" htmlFor="support">{f.support}</label>
+          <textarea id="support" name="support" rows={3} className="form-input" placeholder={p.support}></textarea>
         </div>
 
         <div className="form-group full-width mt-6">
@@ -171,10 +191,10 @@ export const LeadFormInner = () => {
   );
 };
 
-export const LeadForm = () => {
+export const LeadForm = ({ embedded = false }: { embedded?: boolean }) => {
   return (
     <Suspense fallback={<div style={{ textAlign: 'center', padding: '2rem' }}>Loading form...</div>}>
-      <LeadFormInner />
+      <LeadFormInner embedded={embedded} />
     </Suspense>
   );
 };

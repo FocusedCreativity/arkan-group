@@ -2,22 +2,7 @@
 import Link from 'next/link';
 import { useLang } from '@/lib/LangContext';
 
-function ArkanIcon() {
-  return (
-    <svg
-      width="26"
-      height="26"
-      viewBox="0 0 26 26"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      <rect x="0"  y="10" width="5" height="16" rx="1" fill="#FFFFFF" />
-      <rect x="8"  y="6"  width="5" height="20" rx="1" fill="#FFFFFF" />
-      <rect x="16" y="2"  width="5" height="24" rx="1" fill="#FFFFFF" />
-    </svg>
-  );
-}
+
 
 export function Footer() {
   const { t, isArabic } = useLang();
@@ -26,7 +11,7 @@ export function Footer() {
   const groupHrefs = ['/about', '/services', '/sectors', '/why-arkan'];
 
   const companyLinks = t.footer.companyLinks;
-  const companyHrefs = ['/insights', '/contact', '/impact', '/contact'];
+  const companyHrefs = ['/insights', '/governance', '/contact'];
 
   return (
     <footer style={{ backgroundColor: '#0B1B32', color: 'rgba(255,255,255,0.7)', direction: isArabic ? 'rtl' : 'ltr' }}>
@@ -51,23 +36,15 @@ export function Footer() {
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '10px',
                 textDecoration: 'none',
+                marginBottom: '20px',
               }}
             >
-              <ArkanIcon />
-              <span
-                style={{
-                  fontFamily: 'Inter, system-ui, sans-serif',
-                  fontWeight: 600,
-                  fontSize: '16px',
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase',
-                  color: '#FFFFFF',
-                }}
-              >
-                ARKAN
-              </span>
+              <img
+                src="/brand/Logo Horizental on dark.svg"
+                alt="Arkan Logo"
+                style={{ height: '32px', width: 'auto' }}
+              />
             </Link>
             <p
               style={{

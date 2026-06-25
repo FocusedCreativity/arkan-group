@@ -37,9 +37,12 @@ export function Navbar() {
     <>
       <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, backgroundColor: scrolled ? '#FFFFFF' : 'transparent', borderBottom: scrolled ? '1px solid #E5E7EB' : '1px solid transparent', transition: 'background-color 0.3s ease, border-color 0.3s ease' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 clamp(24px, 6vw, 80px)', display: 'flex', alignItems: 'center', height: '72px', direction: isArabic ? 'rtl' : 'ltr' }}>
-          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', flexShrink: 0 }}>
-            <ArkanIcon />
-            <span style={{ fontWeight: 600, fontSize: '16px', letterSpacing: '0.1em', textTransform: 'uppercase', color: logoColor, transition: 'color 0.3s ease' }}>ARKAN</span>
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}>
+            <img
+              src={scrolled ? "/brand/Logo Horizental on white.svg" : "/brand/Logo Horizental on dark.svg"}
+              alt="Arkan Logo"
+              style={{ height: '32px', width: 'auto', transition: 'opacity 0.3s ease' }}
+            />
           </Link>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '28px', margin: '0 auto' }} className="nav-desktop-links">
@@ -69,9 +72,12 @@ export function Navbar() {
       {mobileOpen && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 200, backgroundColor: '#0B1B32', display: 'flex', flexDirection: 'column', padding: '0 clamp(24px, 6vw, 48px)', direction: isArabic ? 'rtl' : 'ltr' }}>
           <div style={{ display: 'flex', alignItems: 'center', height: '72px', justifyContent: 'space-between' }}>
-            <Link href="/" onClick={() => setMobileOpen(false)} style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
-              <ArkanIcon />
-              <span style={{ fontWeight: 600, fontSize: '16px', letterSpacing: '0.1em', color: '#FFFFFF', textTransform: 'uppercase' }}>ARKAN</span>
+            <Link href="/" onClick={() => setMobileOpen(false)} style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+              <img
+                src="/brand/Logo Horizental on dark.svg"
+                alt="Arkan Logo"
+                style={{ height: '32px', width: 'auto' }}
+              />
             </Link>
             <button onClick={() => setMobileOpen(false)} aria-label="Close navigation menu" style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#FFFFFF', padding: '4px' }}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
@@ -110,15 +116,5 @@ export function Navbar() {
         .nav-contact-btn:hover { opacity: 0.85; }
       `}</style>
     </>
-  );
-}
-
-function ArkanIcon() {
-  return (
-    <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <rect x="0" y="10" width="5" height="16" rx="1" fill="#B89460" />
-      <rect x="8" y="6" width="5" height="20" rx="1" fill="#B89460" />
-      <rect x="16" y="2" width="5" height="24" rx="1" fill="#B89460" />
-    </svg>
   );
 }

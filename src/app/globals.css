@@ -437,3 +437,39 @@ p { color: var(--color-text-muted); line-height: 1.8; }
   color: #B89460;
   gap: 12px;
 }
+
+/* ─── Circular arrow CTA (Bechtel-style, Arkan gold) ──────────────── */
+.circle-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--color-navy);
+}
+.circle-cta__icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  background: var(--color-gold);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.25s ease, background-color 0.25s ease;
+  box-shadow: 0 8px 28px rgba(11,27,50,0.18);
+}
+.circle-cta:hover .circle-cta__icon {
+  transform: scale(1.08);
+  background: var(--color-gold-light);
+}
+
+/* ─── Dotted background (Bechtel "Building Tomorrow" band) ─────────── */
+.dotted-bg {
+  background-color: #FBFAF8;
+  background-image: radial-gradient(rgba(11,27,50,0.10) 1px, transparent 1px);
+  background-size: 22px 22px;
+}

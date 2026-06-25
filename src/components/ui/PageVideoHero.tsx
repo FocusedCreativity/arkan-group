@@ -1,9 +1,11 @@
 'use client';
 
 import { ReactNode } from 'react';
-import { VideoBackground } from './VideoBackground';
+import { YouTubeBackground } from './YouTubeBackground';
+import { YOUTUBE } from '@/lib/constants';
 
 interface PageVideoHeroProps {
+  /** Kept for API compatibility; the shared YouTube placeholder is used as the background. */
   videoSrc?: string | null;
   fallbackImage: string;
   eyebrow: string;
@@ -16,7 +18,6 @@ interface PageVideoHeroProps {
 }
 
 export function PageVideoHero({
-  videoSrc,
   fallbackImage,
   eyebrow,
   headline,
@@ -38,11 +39,14 @@ export function PageVideoHero({
       }}
     >
       <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
-        <VideoBackground
-          videoSrc={videoSrc}
+        <YouTubeBackground
+          videoId={YOUTUBE.id}
           posterSrc={fallbackImage}
           alt=""
+          start={YOUTUBE.start}
           isArabic={isArabic}
+          overlayOpacity={0.62}
+          priority
         />
       </div>
       <div

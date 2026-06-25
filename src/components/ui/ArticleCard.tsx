@@ -35,7 +35,7 @@ export function ArticleCard({ article, readLabel, variant = 'default' }: Article
           <span className="article-card__category">{article.category}</span>
         </div>
         <div className="article-card__body">
-          <time className="article-card__date">{article.date}</time>
+          <time className="article-card__date">{article.date} · {article.readMins} min</time>
           <h3 className={`article-card__title ${isFeatured ? 'article-card__title--featured' : ''}`}>
             {article.title}
           </h3>

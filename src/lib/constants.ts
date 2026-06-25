@@ -24,6 +24,16 @@ export const COMPANY = {
   country: 'Libya',
 };
 
+/**
+ * Background video shown across the site (hero + feature bands).
+ * Placeholder YouTube source — swap `id` for the final Arkan brand film.
+ * Source link: https://www.youtube.com/watch?v=VLE0TFHZCLM
+ */
+export const YOUTUBE = {
+  id: 'VLE0TFHZCLM',
+  start: 0,
+} as const;
+
 /** Set to a path when the MP4 exists under public/videos/; null uses poster only. */
 export const VIDEO_PATHS = {
   heroMarketEntry: null,
@@ -56,8 +66,8 @@ export const HOMEPAGE_SECTOR_LINKS = [
   '/libya-construction-partner',
   '/libya-manpower-staffing',
   '/libya-trading-distribution',
-  '/contact',
-  '/contact',
+  '/libya-education-training',
+  '/libya-marketing-media',
 ] as const;
 
 export const SECTORS = [

@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { useLang } from '@/lib/LangContext';
 
 export function FirstConversationSection() {
@@ -73,31 +72,11 @@ export function FirstConversationSection() {
               fontSize: '16px',
               lineHeight: 1.75,
               color: 'rgba(255,255,255,0.75)',
-              marginBottom: '32px',
+              margin: 0,
             }}
           >
             {t.firstConversation.body}
           </p>
-
-          <Link
-            href="#contact"
-            style={{
-              fontFamily: 'Inter, system-ui, sans-serif',
-              fontSize: '14px',
-              fontWeight: 500,
-              color: '#0B1B32',
-              backgroundColor: '#FFFFFF',
-              padding: '14px 32px',
-              borderRadius: '2px',
-              textDecoration: 'none',
-              letterSpacing: '0.02em',
-              display: 'inline-block',
-              transition: 'opacity 0.2s ease',
-            }}
-            className="first-conversation-cta"
-          >
-            {t.firstConversation.cta} {isArabic ? '←' : '→'}
-          </Link>
         </div>
 
         <div>

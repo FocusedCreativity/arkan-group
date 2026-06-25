@@ -20,7 +20,7 @@ export function TrustBar() {
           margin: '0 auto',
           padding: '28px clamp(24px, 6vw, 80px)',
           display: 'grid',
-          gridTemplateColumns: 'repeat(5, 1fr)',
+          gridTemplateColumns: 'repeat(4, 1fr)',
           gap: '24px',
         }}
         className="trust-bar-grid"
